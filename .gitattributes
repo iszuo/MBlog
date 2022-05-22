@@ -1,0 +1,4 @@
+*.js linguist-language=.Net 
+*.css linguist-language=.Net 
+*.html linguist-language=.Net 
+*.Javascript linguist-language=.Net
