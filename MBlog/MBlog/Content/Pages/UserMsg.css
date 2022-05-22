@@ -1,0 +1,100 @@
+﻿body {
+    background-color: #f5f5f5;
+}
+
+.wode {
+    text-decoration: none;
+    color: black;
+}
+
+    .wode:hover {
+        text-decoration: none;
+    }
+
+.geren {
+    width: 700px;
+    height: 500px;
+}
+
+.geren-tu img {
+    width: 700px;
+    height: 300px;
+    border-radius: 5px 5px 0 0;
+}
+
+.jianjie {
+    width: 700px;
+    height: 200px;
+    background-color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+    .jianjie img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50px;
+        z-index: 10;
+        margin-top: -50px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border: 3px solid white;
+    }
+
+.nick {
+    font-size: 20px;
+}
+
+.fensi {
+    margin-left: 150px;
+    margin-top: -50px;
+}
+
+.jieshao {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.help {
+    width: 400px;
+    height: 200px;
+    font-size: 5px;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+.help-o {
+    margin-top: 10px;
+}
+
+.neirong {
+    background-color: white;
+    width: 700px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.neirong-tx {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.neirong-nick {
+    margin-left: 100px;
+    margin-top: -50px;
+}
+
+.neirong-zw {
+    margin-top: 30px;
+    margin-left: 100px;
+    margin-bottom: 30px;
+}
+
+.neirong-pw {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}

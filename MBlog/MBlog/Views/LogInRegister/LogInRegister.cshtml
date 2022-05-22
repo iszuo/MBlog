@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- https://codepen.io/danielkvist/pen/LYNVyPL -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/Pages/Login.css" rel="stylesheet" />
+    <title>新增用户</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 登录窗口 -->
+        <div class="container__form container--signin">
+            <form action="#" class="form" id="form1">
+                <h2 class="form__title">登录</h2>
+                <input id="email_l" type="text" placeholder="邮箱/手机号" class="input" />
+                <input id="pwd_l" type="password" placeholder="密码" class="input" />
+                <input id="code_l" type="text" placeholder="验证码" class="input" style="width: 40%;position: relative;right: 85px;" />
+                <a href="/LogInRegister/LogInRegister" title="看不清楚？点击刷新">
+                    <img src="~/Verify.ashx" style="width: 120px;height: 43px;position: absolute;right: 35px;bottom: 138px;">
+                </a>
+                <button id="Login_btn" class="btn">点击登录</button>
+            </form>
+        </div>
+
+        <!-- 注册窗口 -->
+        <div class="container__form container--signup">
+            <form action="#" class="form" id="form2">
+                <h2 class="form__title">注册</h2>
+                <input id="email_r" type="text" placeholder="请输入注册邮箱" class="input" />
+                <input id="pwd_r" type="password" placeholder="请输入注册密码" class="input" />
+                <input id="code_r" type="text" placeholder="请输入验证码" class="input" style="width: 40%;position: relative;right: 85px;" />
+                <button id="code_btn" class="custom-btn btn-16" style="position: absolute;right: 35px;bottom: 140px;">点击发送</button>
+                <button id="register_btn" class="btn">点击注册</button>
+            </form>
+        </div>
+
+        <!-- 切换框 -->
+        <div class="container__overlay">
+            <div class="overlay">
+                <div class="overlay__panel overlay--left">
+                    <button class="btn" id="signIn">登录</button>
+                </div>
+                <div class="overlay__panel overlay--right">
+                    <button class="btn" id="signUp">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const signInBtn = document.getElementById("signIn");
+        const signUpBtn = document.getElementById("signUp");
+        const fistForm = document.getElementById("form1");
+        const secondForm = document.getElementById("form2");
+        const container = document.querySelector(".container");
+
+        signInBtn.addEventListener("click", () => {
+            container.classList.remove("right-panel-active");
+        });
+
+        signUpBtn.addEventListener("click", () => {
+            container.classList.add("right-panel-active");
+        });
+
+        fistForm.addEventListener("submit", (e) => e.preventDefault());
+        secondForm.addEventListener("submit", (e) => e.preventDefault());
+    </script>
+</body>
+</html>
+
+<script src="~/Scripts/layui.js"></script>
+<script>
+    $(function () {
+
+        // 验证码
+        $("#code_btn").click(function () {
+            $.ajax({
+                url: "/LogInRegister/Code",
+                type: "post",
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    "email_r": $("#email_r").val()
+                },
+                success: function (data) {
+                    layer.msg(data, { icon: 2 });
+                }
+            })
+        })
+
+        // 注册
+        $("#register_btn").click(function () {
+            $.ajax({
+                url: "/LogInRegister/Register",
+                type: "post",
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    "email_r": $("#email_r").val().trim(),
+                    "pwd_r": $("#pwd_r").val().trim(),
+                    "code_r": $("#code_r").val().trim()
+                },
+                success: function (data) {
+                    if (data != "true") {
+                        layer.msg(data, { icon: 2 });
+                    } else {
+                        layer.msg("注册成功", { icon: 1 });
+                        window.location.href = "/LogInRegister/LogInRegister"
+                    }
+                }
+            })
+        })
+
+        // 登录
+        $("#Login_btn").click(function () {
+            $.ajax({
+                url: "/LogInRegister/Login",
+                type: "post",
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    "email_l": $("#email_l").val().trim(),
+                    "pwd_l": $("#pwd_l").val().trim(),
+                    "code_l": $("#code_l").val().trim()
+                },
+                success: function (data) {
+                    if (data != "true") {
+                        layer.msg(data, { icon: 2 });
+                    } else {
+                        layer.msg("登录成功，正在跳转…", { icon: 1 });
+                        window.location.href = "/Home/Index"
+                    }
+                }
+            })
+        })
+
+    })
+</script>

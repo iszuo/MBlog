@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MicroBlogModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="SchoolName" Type="varchar" MaxLength="255" />
+    <Property Name="SchoolType" Type="varchar" MaxLength="255" />
+    <Property Name="Accessible" Type="int" />
+  </EntityType>
+  <EntityType Name="Follow_Fans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Follow" Type="int" Nullable="false" />
+    <Property Name="Fans" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Make">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="MsgId" Type="int" Nullable="false" />
+    <Property Name="MakeText" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="MakeClick" Type="int" />
+    <Property Name="MakeTime" Type="datetime" />
+    <Property Name="Pic" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Msg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sendtime" Type="datetime" />
+    <Property Name="Click_num" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Topic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pic" Type="nvarchar" MaxLength="50" />
+    <Property Name="Video" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Phone" Type="int" />
+    <Property Name="Password" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="255" />
+    <Property Name="Address" Type="nvarchar" MaxLength="255" />
+    <Property Name="Explain" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nick" Type="nvarchar" MaxLength="20" />
+    <Property Name="QQ" Type="int" />
+    <Property Name="Sex" Type="nvarchar" MaxLength="10" />
+    <Property Name="Times" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__Education__UserI__36B12243">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Follow_Fa__Follo__37A5467C">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Follow_Fans" Type="Self.Follow_Fans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow_Fans">
+        <PropertyRef Name="Follow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Follow_Fan__Fans__38996AB5">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Follow_Fans" Type="Self.Follow_Fans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow_Fans">
+        <PropertyRef Name="Fans" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Make_Msg">
+    <End Role="Msg" Type="Self.Msg" Multiplicity="1" />
+    <End Role="Make" Type="Self.Make" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Msg">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Make">
+        <PropertyRef Name="MsgId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Make_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Make" Type="Self.Make" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Make">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Msg_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Msg" Type="Self.Msg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Msg">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MicroBlogModelStoreContainer">
+    <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Follow_Fans" EntityType="Self.Follow_Fans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Make" EntityType="Self.Make" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Msg" EntityType="Self.Msg" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Education__UserI__36B12243" Association="Self.FK__Education__UserI__36B12243">
+      <End Role="User" EntitySet="User" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Follow_Fa__Follo__37A5467C" Association="Self.FK__Follow_Fa__Follo__37A5467C">
+      <End Role="User" EntitySet="User" />
+      <End Role="Follow_Fans" EntitySet="Follow_Fans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Follow_Fan__Fans__38996AB5" Association="Self.FK__Follow_Fan__Fans__38996AB5">
+      <End Role="User" EntitySet="User" />
+      <End Role="Follow_Fans" EntitySet="Follow_Fans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Make_Msg" Association="Self.FK_Make_Msg">
+      <End Role="Msg" EntitySet="Msg" />
+      <End Role="Make" EntitySet="Make" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Make_User" Association="Self.FK_Make_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Make" EntitySet="Make" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Msg_User1" Association="Self.FK_Msg_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Msg" EntitySet="Msg" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

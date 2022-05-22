@@ -1,0 +1,170 @@
+/* 登录按钮 */
+#Login_btn {
+	/* text-decoration: none; */
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	/* 居中 */
+	transform: translate(-50%, -50%);
+	font-size: 12px;
+	background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+	/* background-size: 400%; */
+	width: 70px;
+	height: 20px;
+	color: #fff;
+	line-height: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	border-radius: 50px;
+	z-index: 1;
+}
+
+#Login_btn::before {
+	content: "";
+	position: absolute;
+	left: -5px;
+	right: -5px;
+	top: -5px;
+	bottom: -5px;
+	background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+	background-size: 200%;
+	border-radius: 50px;
+	/* 阴影效果 */
+	/* filter: blur(20px); */
+	z-index: -1;
+}
+
+#Login_btn:hover::before {
+	animation: sun 8s infinite;
+}
+
+#Login_btn:hover {
+	animation: sun 8s infinite;
+	text-decoration: none;
+}
+
+@keyframes sun {
+	100% {
+		background-position: -400% 0;
+	}
+}
+
+/* 登录右按钮 */
+#Login {
+	padding-right: 0px;
+	padding-left: 0px;
+	height: 60px;
+}
+
+#Login .login_menu i {
+	font-weight: bold;
+}
+
+#Login .login_menu a:hover {
+	color: black;
+}
+
+#Login .login_menu:hover {
+	background-color: rgb(200, 200, 200);
+}
+
+#Login .login_menu {
+	height: 35px;
+	line-height: 35px;
+	font-size: 20px;
+	background-color: rgb(229, 230, 235);
+	width: 35px;
+	text-align: center;
+	border-radius: 50px;
+	position: relative;
+	top: 12px;
+}
+
+/* 设置的下拉列表 */
+#Login_menu_list {
+	width: 160px;
+	background-color: white;
+	height: auto;
+	border-radius: 5px;
+	box-shadow: 0px 2px 4px 3px rgb(200, 200, 200);
+	position: absolute;
+	right: 5px;
+	top: 55px;
+}
+
+#Login_menu_list div {
+	height: 44px;
+	font-size: .875rem;
+	text-align: left;
+	line-height: 44px;
+	padding-left: 20px;
+}
+
+
+#Login_menu_list div:hover {
+	background-color: rgb(240, 240, 240);
+}
+
+#Login_menu_list a:hover {
+	text-decoration: none;
+}
+
+/* 中间导航 */
+#template_center {
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+#template_center div {
+	padding-right: 0px;
+	padding-left: 0px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	text-align: center;
+	font-size: 25px;
+	margin: 0px 10px;
+}
+
+/* 搜索框+logo */
+#template_logo {
+	margin: 10px 0;
+}
+
+#template_logo_input input {
+	position: absolute;
+	top: 5px;
+	right: -8px;
+	height: 30px;
+	/* border-radius: 25%; */
+	border: 0px;
+	background-color: rgb(240, 241, 244);
+	width: 130px;
+}
+
+#template_logo_input div {
+	position: absolute;
+	top: 5px;
+	right: -23px;
+	height: 30px;
+	width: 180px;
+	border-radius: 30px;
+	background-color: rgb(240, 241, 244);
+	border: 0px;
+}
+
+#template_logo_input div span {
+	position: relative;
+	top: 7px;
+	left: 10px;
+	font-size: 18px;
+}
+
+/* 点击切换样式 */
+.action {
+	width: 60px;
+	height: 60px;
+	text-align: center;
+	border-bottom: 2px solid orange;
+	color: orange;
+}

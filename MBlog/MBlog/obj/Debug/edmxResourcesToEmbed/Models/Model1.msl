@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MicroBlogModelStoreContainer" CdmEntityContainer="MicroBlogEntities">
+    <EntitySetMapping Name="Education">
+      <EntityTypeMapping TypeName="MicroBlogModel.Education">
+        <MappingFragment StoreEntitySet="Education">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="SchoolType" ColumnName="SchoolType" />
+          <ScalarProperty Name="Accessible" ColumnName="Accessible" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Follow_Fans">
+      <EntityTypeMapping TypeName="MicroBlogModel.Follow_Fans">
+        <MappingFragment StoreEntitySet="Follow_Fans">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Follow" ColumnName="Follow" />
+          <ScalarProperty Name="Fans" ColumnName="Fans" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Make">
+      <EntityTypeMapping TypeName="MicroBlogModel.Make">
+        <MappingFragment StoreEntitySet="Make">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MsgId" ColumnName="MsgId" />
+          <ScalarProperty Name="MakeText" ColumnName="MakeText" />
+          <ScalarProperty Name="MakeClick" ColumnName="MakeClick" />
+          <ScalarProperty Name="MakeTime" ColumnName="MakeTime" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Msg">
+      <EntityTypeMapping TypeName="MicroBlogModel.Msg">
+        <MappingFragment StoreEntitySet="Msg">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="sendtime" ColumnName="sendtime" />
+          <ScalarProperty Name="Click_num" ColumnName="Click_num" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Topic" ColumnName="Topic" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
+          <ScalarProperty Name="Video" ColumnName="Video" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="MicroBlogModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Explain" ColumnName="Explain" />
+          <ScalarProperty Name="Nick" ColumnName="Nick" />
+          <ScalarProperty Name="QQ" ColumnName="QQ" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Times" ColumnName="Times" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

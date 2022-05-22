@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="78a74cc5270c46fd86269a2ffa3bae10" Name="Diagram1">
+        <EntityTypeShape EntityType="MicroBlogModel.Education" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MicroBlogModel.Follow_Fans" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="MicroBlogModel.Make" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MicroBlogModel.Msg" Width="1.5" PointX="3" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MicroBlogModel.User" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="MicroBlogModel.FK__Education__UserI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="MicroBlogModel.FK__Follow_Fa__Follo__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="MicroBlogModel.FK__Follow_Fan__Fans__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="MicroBlogModel.FK_Make_Msg" ManuallyRouted="false" />
+        <AssociationConnector Association="MicroBlogModel.FK_Make_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MicroBlogModel.FK_Msg_User1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

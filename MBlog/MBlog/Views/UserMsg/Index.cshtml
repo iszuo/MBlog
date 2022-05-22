@@ -1,0 +1,388 @@
+﻿
+@{
+    ViewBag.Title = "个人信息";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@model  List<MBlog.Models.Msg>
+@*css样式*@
+@section cssa{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .wode {
+            text-decoration: none;
+            color: black;
+        }
+
+            .wode:hover {
+                text-decoration: none;
+            }
+
+        .geren {
+            width: 700px;
+            height: 500px;
+        }
+
+        .geren-tu img {
+            width: 700px;
+            height: 300px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .jianjie {
+            width: 700px;
+            height: 200px;
+            background-color: white;
+            border-radius: 0 0 5px 5px;
+        }
+
+            .jianjie img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+                z-index: 10;
+                margin-top: -50px;
+                margin-left: 20px;
+                margin-right: 20px;
+                border: 3px solid white;
+            }
+
+        .nick {
+            font-size: 20px;
+        }
+
+        .fensi {
+            margin-left: 150px;
+            margin-top: -50px;
+        }
+
+        .jieshao {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .help {
+            width: 400px;
+            height: 200px;
+            font-size: 5px;
+            position: fixed;
+            bottom: 0;
+            z-index: 10;
+        }
+
+        .help-o {
+            margin-top: 10px;
+        }
+
+        .neirong {
+            background-color: white;
+            width: 700px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .neirong-tx {
+            width: 70px;
+            height: 70px;
+            border-radius: 50px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .neirong-nick {
+            margin-top: 35px;
+        }
+
+        .neirong-zw {
+            margin-top: 30px;
+            margin-left: 120px;
+            margin-bottom: 30px;
+        }
+
+        .neirong-pw {
+            text-align: center;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .neirong-anniu {
+            margin-top: 20px;
+            padding-left: 40px;
+        }
+    </style>
+
+
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="list-group-item-heading h4">个人主页</div>
+                    <br>
+                    <br>
+                    <a href="/UserMsg/Index" class="wode">
+
+                        <p class="list-group-item-text">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            我的主页
+                        </p>
+                    </a>
+                </div>
+
+                <a href="/UserMsg/guanzhu" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        我的关注
+                    </p>
+                </a>
+                <a href="/UserMsg/fensi" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                        我的粉丝
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                        我的收藏
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        我的赞
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                        我的管理中心
+                    </p>
+                </a>
+            </div>
+
+        </div>
+        <div class="col-xs-8">
+            <div class="geren">
+                <div class="geren-tu">
+                    <img src="/images/UserMsg/2333333.png" alt="">
+                </div>
+                <div class="jianjie">
+                    <img src="@ViewBag.user.Image" alt="">
+                    <div class="fensi">
+                        <div>
+                            <span class="nick">@ViewBag.user.Nick</span>
+                        </div>
+                        <div>
+                            <a href="/UserMsg/fensi">
+                                <span>
+                                    粉丝
+                                </span>
+                                <span>
+                                    @ViewBag.fs
+                                </span>
+                            </a>
+                            <a href="/UserMsg/guanzhu">
+                                <span>
+                                    关注
+                                </span>
+                                <span>
+                                    @ViewBag.gz
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="jieshao">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        <span>@ViewBag.user.Explain</span>
+                    </div>
+                    <div class="jieshao">
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                        <span>@ViewBag.user.Address</span>
+                    </div>
+                    <div class="jieshao">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <span>@ViewBag.user.Times</span>
+                        <span>加入微博</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px; margin-bottom: 20px;">
+                <span>全部微博</span>
+                <span>(</span>
+                <span>@ViewBag.wbc</span>
+                <span>)</span>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="neirong">
+
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <img src="@ViewBag.user.Image" alt="" class="neirong-tx">
+                        </div>
+
+
+                        <div class="neirong-nick col-xs-8">
+                            <a href="#"><span>@ViewBag.user.Nick</span><br></a>
+                            <span>@item.sendtime</span>
+                            <span>来自微博</span>
+                        </div>
+                        <div class="col-xs-2 neirong-anniu">
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                                    <span class="glyphicon glyphicon-triangle-bottom"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li>
+
+                                        <a href="#" onclick="Deletewb(@item.Id)">删除</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="neirong-zw">
+                        <span>@item.Text</span>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 neirong-pw">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                                <span>转发</span>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 neirong-pw">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                <span>评论</span>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 neirong-pw">
+                            <a href="#">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                                <span>赞(@item.Click_num)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+
+
+        </div>
+
+        <div class="col-xs-2">
+            <div class="help">
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                        <span>帮助中心</span>
+                    </div>
+                    <div>
+                        <a href="#">微博客服 4000-960-960</a>
+                        <a href="#">自助服务中心</a>
+                        <a href="#">常见问题</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                        <span>合作&服务</span>
+                    </div>
+                    <div>
+                        <a href="#">微博营销</a>
+                        <a href="#">合作热线 4000-980-980</a>
+                        <a href="#">开放平台</a>
+                        <a href="#">更多</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span>举报中心</span>
+                    </div>
+                    <div>
+                        <a href="#">违规投诉 010-60618076</a>
+                        <a href="#">处理大厅</a>
+                        <a href="#">舞弊举报</a>
+                        <a href="#">更多</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                        <span>关于微博</span>
+                    </div>
+                    <div>
+                        <a href="#">About Weibo</a>
+                        <a href="#">客户端下载</a>
+                        <a href="#">微博招聘</a>
+                        <a href="#">网站备案信息</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts{
+        <script>
+            function Deletewb(id) {
+                if (confirm("确认删除？") == true) {
+                    $.ajax(
+                        {
+                            url: "/UserMsg/Deletewb",
+                            type: "GET",
+                            contentType: "application/x-www-form-urlencoded",
+                            data: {
+                                "mid": id
+                            },
+
+                            success: function (data) {
+                                if (data == "true") {
+                                    alert("删除成功");
+                                    location.href = '/UserMsg/Index';
+                                }
+                                else {
+                                    alert("删除失败");
+                                }
+                            },
+                            error: function (error) {
+                                alert("删除失败");
+                            }
+                        })
+                }
+
+            }
+
+
+
+
+        </script>
+
+
+
+
+    }
+
+
+</div>

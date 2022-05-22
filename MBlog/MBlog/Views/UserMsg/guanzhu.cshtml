@@ -1,0 +1,314 @@
+﻿@model  List<MBlog.Models.Follow_Fans>
+@{
+    ViewBag.Title = "guanzhu";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@section cssa{
+
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .wode {
+            text-decoration: none;
+            color: black;
+        }
+
+            .wode:hover {
+                text-decoration: none;
+            }
+
+        .geren {
+            width: 700px;
+            height: 500px;
+        }
+
+        .geren-tu img {
+            width: 700px;
+            height: 300px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .jianjie {
+            width: 700px;
+            height: 200px;
+            background-color: white;
+            border-radius: 0 0 5px 5px;
+        }
+
+            .jianjie img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50px;
+                z-index: 10;
+                margin-top: -50px;
+                margin-left: 20px;
+                margin-right: 20px;
+                border: 3px solid white;
+            }
+
+        .nick {
+            font-size: 20px;
+        }
+
+        .fensi {
+            margin-left: 150px;
+            margin-top: -50px;
+        }
+
+        .jieshao {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .help {
+            width: 400px;
+            height: 200px;
+            font-size: 5px;
+            position: fixed;
+            bottom: 0;
+            z-index: 10;
+        }
+
+        .help-o {
+            margin-top: 10px;
+        }
+
+        .neirong {
+            background-color: white;
+            width: 100%;
+        }
+
+
+        .neirong-tt {
+            height: 50px;
+            line-height: 50px;
+            padding-left: 20px;
+        }
+
+        .neirong-ss {
+            padding-left: 20px;
+        }
+
+        .neirong-gz-tx {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+        }
+
+        .neirong-gz {
+            padding: 25px;
+        }
+
+        .neirong a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .neirong-gz-nick {
+            padding-top: 15px;
+            font-weight: bolder;
+        }
+
+        .neirong-gz-btn {
+            padding-top: 8px;
+        }
+    </style>
+
+
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="list-group-item-heading h4">个人主页</div>
+                    <br>
+                    <br>
+                    <a href="/UserMsg/Index" class="wode">
+
+                        <p class="list-group-item-text">
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            我的主页
+                        </p>
+                    </a>
+                </div>
+
+                <a href="/UserMsg/guanzhu" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                        我的关注
+                    </p>
+                </a>
+                <a href="/UserMsg/fensi" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                        我的粉丝
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+                        我的收藏
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        我的赞
+                    </p>
+                </a>
+                <a href="#" class="list-group-item">
+
+                    <p class="list-group-item-text">
+                        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+                        我的管理中心
+                    </p>
+                </a>
+
+
+
+            </div>
+
+        </div>
+        <div class="col-xs-7">
+
+
+            <div class="neirong">
+                <div class="neirong-tt">
+                    全部关注
+                    <span>@ViewBag.gz</span>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="input-group neirong-ss" style="width: 200px;">
+
+                        <input type="text" name="uname" class="form-control">
+                        <span class="input-group-btn">
+
+                            <input type="submit" value="查询" class="btn btn-primary" />
+                        </span>
+
+
+                    </div>
+                }
+
+                @foreach (var item in Model)
+                {
+                    <a href="#">
+                        <div class="row neirong-gz">
+                            <div class="col-xs-2">
+                                <img src="@item.User1.Image" class="neirong-gz-tx">
+                            </div>
+                            <div class="col-xs-8 neirong-gz-nick">
+                                <span class="neirong-gz-nick">@item.User1.Nick</span>
+                            </div>
+                            <div class="col-xs-2 neirong-gz-btn">
+                                <button class="btn btn-default" onclick="cancel(@item.User1.Id)">已关注</button>
+                            </div>
+                        </div>
+                    </a>
+                }
+
+            </div>
+
+        </div>
+
+        <div class="col-xs-3">
+
+            <div class="help">
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                        <span>帮助中心</span>
+                    </div>
+                    <div>
+                        <a href="#">微博客服 4000-960-960</a>
+                        <a href="#">自助服务中心</a>
+                        <a href="#">常见问题</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                        <span>合作&服务</span>
+                    </div>
+                    <div>
+                        <a href="#">微博营销</a>
+                        <a href="#">合作热线 4000-980-980</a>
+                        <a href="#">开放平台</a>
+                        <a href="#">更多</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span>举报中心</span>
+                    </div>
+                    <div>
+                        <a href="#">违规投诉 010-60618076</a>
+                        <a href="#">处理大厅</a>
+                        <a href="#">舞弊举报</a>
+                        <a href="#">更多</a>
+                    </div>
+                </div>
+                <div class="help-o">
+                    <div>
+                        <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
+                        <span>关于微博</span>
+                    </div>
+                    <div>
+                        <a href="#">About Weibo</a>
+                        <a href="#">客户端下载</a>
+                        <a href="#">微博招聘</a>
+                        <a href="#">网站备案信息</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @section scripts{
+        <script>
+            function cancel(id) {
+                if (confirm("确认不再关注此人？") == true) {
+                    $.ajax(
+                        {
+                            url: "/UserMsg/Cancel",
+                            type: "GET",
+                            contentType: "application/x-www-form-urlencoded",
+                            data: {
+                                "uid": id
+                            },
+
+                            success: function (data) {
+                                if (data == "true") {
+                                    location.href = '/UserMsg/guanzhu';
+                                }
+                                else {
+                                    alert("删除失败");
+                                }
+                            },
+                            error: function (error) {
+                                alert("删除失败");
+                            }
+                        })
+                }
+
+            }
+
+
+
+
+        </script>
+
+
+
+
+    }

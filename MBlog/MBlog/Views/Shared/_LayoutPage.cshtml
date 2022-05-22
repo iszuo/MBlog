@@ -1,0 +1,165 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/layui.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Pages/Template.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/Pages/Template.js"></script>
+    <script src="~/Scripts/layui.js"></script>
+    @RenderSection("cssa", required: false)
+</head>
+<body>
+
+    <!-- 顶部 -->
+    <div id="top" style="width: 100%;height: 60px;background-color:white;position:fixed;top:0px;z-index:999;">
+        <div class="container">
+            <div style="height: 60px;">
+                <!-- 左侧logo -->
+                <div id="template_logo" class="col-md-3">
+                    <img src="~/images/Template/logo-wap.png" />
+                    <div id="template_logo_input">
+                        <div>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </div>
+                        <input type="text" name="" id="" value="" placeholder="搜索微博" />
+                    </div>
+                </div>
+                <!-- 中间 -->
+                <div id="template_center" class="col-md-6">
+                    <div>
+                        <div class="col-md-2">
+                            <a href="/Home/Release_Msg" title="主页" style="color:black;">
+                                <div class="template_center_list">
+                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/Home/Video" title="视频" style="color:black;">
+                                <div class="template_center_list">
+                                    <i class="fa fa-television" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/Home/Index" title="热门" id="popular" style="color:black;">
+                                <div class="template_center_list action">
+                                    <i class="fa fa-fire" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" title="消息" style="color:black;">
+                                <div class="template_center_list">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div id="user_msg" class="col-md-2" style="position: absolute;right: 0px;top: 0px;">
+                            <a href="/UserMsg/Index" title="用户名">
+                                <div class="template_center_list">
+                                    @*// 获取登录用户的头像*@
+                                    @if (Session["user"] != null)
+                                    {
+                                        string uimg = (Session["user"] as MBlog.Models.User).Image;
+                                        if (uimg != null)
+                                        {
+                                            <img src="@uimg" style="height: 50px; border-radius: 50%; position: relative; top: -3px; width: 50px;" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/Template/user.jpg" style="height:50px;border-radius: 50%;position: relative;top: -3px;width:50px;" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/images/Template/user.jpg" style="height: 50px; border-radius: 50%; position: relative; top: -3px; width: 50px;" />
+
+                                    }
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧登录 -->
+                <div id="Login" class="col-md-3">
+                    @if (Session["user"] != null)
+                    {
+                        // 获取登录用户的昵称
+                        string uname = (Session["user"] as MBlog.Models.User).Nick;
+                        <div class="col-md-4" style="height: 60px;line-height:60px;">
+                            <span>@uname</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-4" style="height: 60px;">
+                            <a id="Login_btn" href="/LogInRegister/LogInRegister">登录/注册</a>
+                        </div>
+                    }
+                    <div class="col-md-8" style="height: 60px;">
+
+                        @if (Session["user"] != null)
+                        {
+                            <div class="col-md-4">
+                                <div class="login_menu" style="cursor: pointer; ">
+                                    <!-- 设置 -->
+                                    @*<a href="#" style="color:black;">*@
+                                    <i class="fa fa-cog" aria-hidden="true"></i>
+                                    @*</a>*@
+                                </div>
+                                <div id="Login_menu_list" style="display: none;z-index:888;">
+                                    <div><a href="#">账号设置</a></div>
+                                    <div><a href="#">V认证</a></div>
+                                    <div><a href="#">会员中心</a></div>
+                                    <div><a href="#">账号安全</a></div>
+                                    <div><a href="#">隐私设置</a></div>
+                                    <div><a href="#">消息设置</a></div>
+                                    <div><a href="#">屏蔽设置</a></div>
+                                    <div><a href="#">使用偏好</a></div>
+                                    <div><a href="#">意见反馈</a></div>
+                                    <div><a href="#">帮助中心</a></div>
+                                    <div><a href="#">返回原微博</a></div>
+                                    <div><a href="/LogInRegister/SignOut">退出</a></div>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-md-4">
+                            <div class="login_menu">
+                                <!-- 太阳 -->
+                                <a id="sun" href="javascript::" style="color:black;">
+                                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                                </a>
+                                <!-- 月亮 -->
+                                <a id="moon" href="javascript::" style="color:black;display: none;">
+                                    <i class="fa fa-moon-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="login_menu" style="background-color: orange;">
+                                <!-- 发布微博 -->
+                                <a href="javascript::" style="color: white;">
+                                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 中间 -->
+    <div style="margin-top:63px;z-index:1;">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+@RenderSection("scripts", required: false)

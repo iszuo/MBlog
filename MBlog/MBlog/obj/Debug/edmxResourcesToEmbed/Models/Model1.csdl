@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MicroBlogModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="SchoolName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="SchoolType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Accessible" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Education__UserI__36B12243" FromRole="Education" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Follow_Fans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Follow" Type="Int32" Nullable="false" />
+    <Property Name="Fans" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Follow_Fa__Follo__37A5467C" FromRole="Follow_Fans" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__Follow_Fan__Fans__38996AB5" FromRole="Follow_Fans" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Make">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="MsgId" Type="Int32" Nullable="false" />
+    <Property Name="MakeText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MakeClick" Type="Int32" />
+    <Property Name="MakeTime" Type="DateTime" Precision="3" />
+    <Property Name="Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Msg" Relationship="Self.FK_Make_Msg" FromRole="Make" ToRole="Msg" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Make_User" FromRole="Make" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Msg">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Userid" Type="Int32" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sendtime" Type="DateTime" Precision="3" />
+    <Property Name="Click_num" Type="Int32" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Video" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Make" Relationship="Self.FK_Make_Msg" FromRole="Msg" ToRole="Make" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Msg_User1" FromRole="Msg" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Explain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nick" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="QQ" Type="Int32" />
+    <Property Name="Sex" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Times" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Education" Relationship="Self.FK__Education__UserI__36B12243" FromRole="User" ToRole="Education" />
+    <NavigationProperty Name="Follow_Fans" Relationship="Self.FK__Follow_Fa__Follo__37A5467C" FromRole="User" ToRole="Follow_Fans" />
+    <NavigationProperty Name="Follow_Fans1" Relationship="Self.FK__Follow_Fan__Fans__38996AB5" FromRole="User" ToRole="Follow_Fans" />
+    <NavigationProperty Name="Make" Relationship="Self.FK_Make_User" FromRole="User" ToRole="Make" />
+    <NavigationProperty Name="Msg" Relationship="Self.FK_Msg_User1" FromRole="User" ToRole="Msg" />
+  </EntityType>
+  <Association Name="FK__Education__UserI__36B12243">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Follow_Fa__Follo__37A5467C">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Follow_Fans" Type="Self.Follow_Fans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow_Fans">
+        <PropertyRef Name="Follow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Follow_Fan__Fans__38996AB5">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Follow_Fans" Type="Self.Follow_Fans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Follow_Fans">
+        <PropertyRef Name="Fans" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Make_Msg">
+    <End Role="Msg" Type="Self.Msg" Multiplicity="1" />
+    <End Role="Make" Type="Self.Make" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Msg">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Make">
+        <PropertyRef Name="MsgId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Make_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Make" Type="Self.Make" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Make">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Msg_User1">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Msg" Type="Self.Msg" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Msg">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MicroBlogEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Education" EntityType="Self.Education" />
+    <EntitySet Name="Follow_Fans" EntityType="Self.Follow_Fans" />
+    <EntitySet Name="Make" EntityType="Self.Make" />
+    <EntitySet Name="Msg" EntityType="Self.Msg" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK__Education__UserI__36B12243" Association="Self.FK__Education__UserI__36B12243">
+      <End Role="User" EntitySet="User" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Follow_Fa__Follo__37A5467C" Association="Self.FK__Follow_Fa__Follo__37A5467C">
+      <End Role="User" EntitySet="User" />
+      <End Role="Follow_Fans" EntitySet="Follow_Fans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Follow_Fan__Fans__38996AB5" Association="Self.FK__Follow_Fan__Fans__38996AB5">
+      <End Role="User" EntitySet="User" />
+      <End Role="Follow_Fans" EntitySet="Follow_Fans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Make_Msg" Association="Self.FK_Make_Msg">
+      <End Role="Msg" EntitySet="Msg" />
+      <End Role="Make" EntitySet="Make" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Make_User" Association="Self.FK_Make_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Make" EntitySet="Make" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Msg_User1" Association="Self.FK_Msg_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Msg" EntitySet="Msg" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
